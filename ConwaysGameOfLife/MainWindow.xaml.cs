@@ -15,9 +15,6 @@ namespace ConwaysGameOfLife
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        Cell[,] cellGrid;
-
         public int Rows { get; set; }
         public int Columns { get; set; }
 
@@ -37,7 +34,7 @@ namespace ConwaysGameOfLife
             Columns = 3;
 
             UniformGrid conwayUniformGrid = new UniformGrid { Rows = this.Rows, Columns = this.Columns };
-            cellGrid = new Cell[Columns, Rows];
+            Board.CellBoard = new Cell[Columns, Rows];
 
             Rectangle rectangle;
             Cell cell;
@@ -48,7 +45,7 @@ namespace ConwaysGameOfLife
                 for (int y = 0; y < Rows; y++)
                 {
                     cell = new Cell(false, x, y);
-                    cellGrid[x, y] = cell;
+                    Board.CellBoard[x, y] = cell;
 
                     rectangle = new Rectangle
                     {
@@ -74,13 +71,21 @@ namespace ConwaysGameOfLife
 
         private void BtnStepAhead_Click(object sender, RoutedEventArgs e)
         {
-            Cell[,] board = new Cell[Columns, Rows];
+            bool[,] deadOrAlive = new bool[Columns, Rows];
 
             for (int x = 0; x < Columns; x++)
             {
                 for (int y = 0; y < Rows; y++)
                 {
+                    deadOrAlive[x, y] = Board.CellBoard[x, y].NextIteration();
+                }
+            }
 
+            for (int x = 0; x < Columns; x++)
+            {
+                for (int y = 0; y < Rows; y++)
+                {
+                    Board.CellBoard[x, y].Alive = deadOrAlive[x, y];
                 }
             }
         }

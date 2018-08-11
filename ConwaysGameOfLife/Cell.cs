@@ -37,9 +37,103 @@ namespace ConwaysGameOfLife
 
         public bool NextIteration()
         {
+            int neighborsCount = 0;
+
+            //Top Left
+            try
+            {
+                if (Board.CellBoard[(X - 1), (Y - 1)].Alive)
+                    neighborsCount++;
+            }
+            catch (IndexOutOfRangeException e)
+            { }
 
 
-            return true;
+            //Top
+            try
+            {
+                if (Board.CellBoard[X, (Y - 1)].Alive)
+                    neighborsCount++;
+            }
+            catch (IndexOutOfRangeException e)
+            { }
+
+
+            //Top Right
+            try
+            {
+                if (Board.CellBoard[(X - 1), (Y - 1)].Alive)
+                    neighborsCount++;
+            }
+            catch (IndexOutOfRangeException e)
+            { }
+
+
+            //Left
+            try
+            {
+                if (Board.CellBoard[(X - 1), Y].Alive)
+                    neighborsCount++;
+            }
+            catch (IndexOutOfRangeException e)
+            { }
+
+
+            //Right
+            try
+            {
+                if (Board.CellBoard[(X + 1), Y].Alive)
+                    neighborsCount++;
+            }
+            catch (IndexOutOfRangeException e)
+            { }
+
+
+            //Bottom Left
+            try
+            {
+                if (Board.CellBoard[(X - 1), (Y + 1)].Alive)
+                    neighborsCount++;
+            }
+            catch (IndexOutOfRangeException e)
+            { }
+
+            //Bottom
+            try
+            {
+                if (Board.CellBoard[X, (Y + 1)].Alive)
+                    neighborsCount++;
+            }
+            catch (IndexOutOfRangeException e)
+            { }
+
+
+            //Bottom Right
+            try
+            {
+                if (Board.CellBoard[(X + 1), (Y + 1)].Alive)
+                    neighborsCount++;
+            }
+            catch (IndexOutOfRangeException e)
+            { }
+            
+
+
+            if (neighborsCount < 2)
+                return false;
+
+
+            if (neighborsCount > 3)
+                return false;
+
+            if (neighborsCount == 3)
+                return true;
+
+            if (this.Alive && (neighborsCount == 2 || neighborsCount == 3))
+                return true;
+
+            return false;
+
         }
 
     }
