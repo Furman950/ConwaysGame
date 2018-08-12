@@ -30,19 +30,17 @@ namespace ConwaysGameOfLife
             Rows = (int)rowSlider.Value;
             Columns = (int)columnSlider.Value;
 
-            Rows = 3;
-            Columns = 3;
 
             UniformGrid conwayUniformGrid = new UniformGrid { Rows = this.Rows, Columns = this.Columns };
-            Board.CellBoard = new Cell[Columns, Rows];
+            Board.CellBoard = new Cell[Rows, Columns];
 
             Rectangle rectangle;
             Cell cell;
             Binding b;
 
-            for (int x = 0; x < Columns; x++)
+            for (int x = 0; x < Rows; x++)
             {
-                for (int y = 0; y < Rows; y++)
+                for (int y = 0; y < Columns; y++)
                 {
                     cell = new Cell(false, x, y);
                     Board.CellBoard[x, y] = cell;
@@ -71,23 +69,38 @@ namespace ConwaysGameOfLife
 
         private void BtnStepAhead_Click(object sender, RoutedEventArgs e)
         {
-            bool[,] deadOrAlive = new bool[Columns, Rows];
+            bool[,] deadOrAlive = new bool[Rows, Columns];
 
-            for (int x = 0; x < Columns; x++)
+            for (int x = 0; x < Rows; x++)
             {
-                for (int y = 0; y < Rows; y++)
+                for (int y = 0; y < Columns; y++)
                 {
                     deadOrAlive[x, y] = Board.CellBoard[x, y].NextIteration();
                 }
             }
 
-            for (int x = 0; x < Columns; x++)
+            for (int x = 0; x < Rows; x++)
             {
-                for (int y = 0; y < Rows; y++)
+                for (int y = 0; y < Columns; y++)
                 {
                     Board.CellBoard[x, y].Alive = deadOrAlive[x, y];
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string bla = "";
+            for (int x = 0; x < Rows; x++)
+            {
+                for (int y = 0; y < Columns; y++)
+                {
+                    bla += $"X:{x}, Y:{y} ::{Board.CellBoard[x, y].Alive}             ";
+                }
+                bla += "\n";
+            }
+
+            MessageBox.Show(bla);
         }
     }
 }

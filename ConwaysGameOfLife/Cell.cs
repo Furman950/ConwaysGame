@@ -52,7 +52,7 @@ namespace ConwaysGameOfLife
             //Top
             try
             {
-                if (Board.CellBoard[X, (Y - 1)].Alive)
+                if (Board.CellBoard[(X -1), Y].Alive)
                     neighborsCount++;
             }
             catch (IndexOutOfRangeException e)
@@ -62,7 +62,7 @@ namespace ConwaysGameOfLife
             //Top Right
             try
             {
-                if (Board.CellBoard[(X - 1), (Y - 1)].Alive)
+                if (Board.CellBoard[(X - 1), (Y + 1)].Alive)
                     neighborsCount++;
             }
             catch (IndexOutOfRangeException e)
@@ -72,7 +72,7 @@ namespace ConwaysGameOfLife
             //Left
             try
             {
-                if (Board.CellBoard[(X - 1), Y].Alive)
+                if (Board.CellBoard[X, (Y -1)].Alive)
                     neighborsCount++;
             }
             catch (IndexOutOfRangeException e)
@@ -82,7 +82,7 @@ namespace ConwaysGameOfLife
             //Right
             try
             {
-                if (Board.CellBoard[(X + 1), Y].Alive)
+                if (Board.CellBoard[X , (Y + 1)].Alive)
                     neighborsCount++;
             }
             catch (IndexOutOfRangeException e)
@@ -92,7 +92,7 @@ namespace ConwaysGameOfLife
             //Bottom Left
             try
             {
-                if (Board.CellBoard[(X - 1), (Y + 1)].Alive)
+                if (Board.CellBoard[(X + 1), (Y - 1)].Alive)
                     neighborsCount++;
             }
             catch (IndexOutOfRangeException e)
@@ -101,7 +101,7 @@ namespace ConwaysGameOfLife
             //Bottom
             try
             {
-                if (Board.CellBoard[X, (Y + 1)].Alive)
+                if (Board.CellBoard[(X + 1), Y].Alive)
                     neighborsCount++;
             }
             catch (IndexOutOfRangeException e)
