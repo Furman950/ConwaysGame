@@ -88,19 +88,16 @@ namespace ConwaysGameOfLife
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BtnRandom_Click(object sender, RoutedEventArgs e)
         {
-            string bla = "";
-            for (int x = 0; x < Rows; x++)
+            Random random = new Random();
+            for (int i = 0; i < Rows; i++)
             {
-                for (int y = 0; y < Columns; y++)
+                for (int j = 0; j < Columns; j++)
                 {
-                    bla += $"X:{x}, Y:{y} ::{Board.CellBoard[x, y].Alive}             ";
+                    Board.CellBoard[i, j].Alive = random.Next(100) > 50 ? true : false;
                 }
-                bla += "\n";
             }
-
-            MessageBox.Show(bla);
         }
     }
 }
